@@ -20,7 +20,8 @@
     "@angular/platform-browser-dynamic": "^19.2.22",
     "@angular/router": "^19.2.22",
     "@primeng/themes": "^21.0.4",
-    "primeng": "^21.1.7",
+    "primeicons": "^7.0.0",
+    "primeng": "^19.1.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "^0.15.1"
