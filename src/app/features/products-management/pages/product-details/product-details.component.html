@@ -1,0 +1,73 @@
+@if (isLoading()) {
+     <div class="loading-container">
+      <p-progress-spinner ariaLabel="loading" strokeWidth="4" />
+      <span class="loading-text">Loading product details...</span>
+    </div>
+} @else {
+  @if (product(); as p) {
+    <div class="details-view">
+      <div class="image-container">
+        <img [src]="p.imgUrl" [alt]="p.model">
+      </div>
+
+      <div class="info-container">
+        
+        <section class="description-section">
+          <h1>{{ p.brand }} {{ p.model }}</h1>
+          <p class="price-tag">{{ p.price | currency:'EUR' }}</p>
+          
+          <ul class="specs-list">
+            <li><strong>CPU:</strong> {{ p.cpu }}</li>
+            <li><strong>RAM:</strong> {{ p.ram }}</li>
+            <li><strong>OS:</strong> {{ p.os }}</li>
+            <li><strong>Resolution:</strong> {{ p.displayResolution }}</li>
+            <li><strong>Battery:</strong> {{ p.battery }}</li>
+            <li><strong>Cameras:</strong> {{ p.primaryCamera }}</li>
+            <li><strong>Dimentions:</strong> {{ p.dimentions }}</li>
+            <li><strong>Weight:</strong> {{ p.weight }}</li>
+          </ul>
+        </section>
+
+        <section class="actions-section">
+          <form [formGroup]="productForm">
+            <div class="selectors">
+              <div class="field">
+                <label for="colorCode">Select Color</label>
+                <p-select 
+                  [options]="p.options.colors" 
+                  formControlName="colorCode" 
+                  optionLabel="name" 
+                  optionValue="code"
+                  placeholder="Select a color">
+                </p-select>
+              </div>
+
+              <div class="field">
+                <label for="storageCode">Select Storage</label>
+                <p-select 
+                  formControlName="storageCode" 
+                  optionLabel="name" 
+                  optionValue="code"
+                  [options]="p.options.storages" 
+                  placeholder="Select storage"
+                />
+              </div>
+            </div>
+
+            <button 
+              pButton 
+              type="button"
+              (click)="onAddToCart()"
+              label="Add to Cart" 
+              class="p-button-primary w-full"
+              [disabled]="productForm.invalid">
+            </button>
+          </form>
+
+          <a routerLink="/products" class="back-link">Return to Catalog</a>
+        </section>
+
+      </div>
+    </div>
+  }
+}

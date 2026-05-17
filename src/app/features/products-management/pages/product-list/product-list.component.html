@@ -1,0 +1,28 @@
+@if (isLoading()) {
+     <div class="loading-container">
+      <p-progress-spinner ariaLabel="loading" strokeWidth="4" />
+      <span class="loading-text">Loading products...</span>
+    </div>
+} @else {
+  <div class="product-list-container">
+    
+    <div class="search-container">
+      <span class="p-input-icon-left w-full">
+        <input 
+          type="text" 
+          pInputText 
+          placeholder="Search for a device..." 
+          [ngModel]="searchTerm()" 
+          (ngModelChange)="searchTerm.set($event)"
+          class="w-full search-input" 
+        />
+      </span>
+    </div>
+
+    <div class="products-grid">
+      @for (product of filteredProducts(); track product.id) {
+        <app-product-card [product]="product"/>
+      }
+    </div>
+  </div>
+}

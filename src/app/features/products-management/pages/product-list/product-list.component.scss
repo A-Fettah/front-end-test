@@ -1,0 +1,54 @@
+.loading-container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;     
+  
+  width: 100%;
+  height: 70vh;
+  
+  gap: 1rem;
+}
+
+:host ::ng-deep .p-progress-spinner {
+  width: 100px;
+  height: 100px;
+}
+
+.loading-text {
+  font-family: var(--font-family);
+  color: #666;
+  font-weight: 500;
+}
+
+.product-list-container {
+  padding: 1rem;
+
+  .search-container {
+    margin-bottom: 3rem;
+    max-width: 400px;
+    
+    .search-input {
+      padding: 0.75rem 1rem 0.75rem 2.5rem; // Espacio para el icono pi-search
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      width: 100%;
+
+      &:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      }
+    }
+  }
+
+  .products-grid {
+    display: grid;
+    // 4 columnas exactas por línea
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+
+    @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px) { grid-template-columns: 1fr; }
+  }
+
+}
